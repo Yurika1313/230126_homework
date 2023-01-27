@@ -63,7 +63,7 @@ console.log("The type of drink is [" + Object.keys(vendingMachine) + "].");
 //console.log(vendingMachine);
 
 /* Ninja */
-function refillDrink (){
+function refillDrink () {
     let refillVM = {};
 
     for (const drinkName of Object.keys(vendingMachine)) {
@@ -76,10 +76,25 @@ function refillDrink (){
     
     for (const drinkName of Object.keys(refillVM)) {
         if (refillVM[drinkName].stockDifference != 0) {
-            console.log(drinkName + ": stockDifference: " + refillVM[drinkName].stockDifference);
+            console.log(drinkName + " >>> stockDifference: " + refillVM[drinkName].stockDifference);
         }
     }
 }
-
+console.log("\n---Drink Stock---");
 refillDrink();
 
+/* Nightmare */
+function giveChange (yen, label) {
+    let change = 0;
+    let jpnMoney = [10000, 1000, 500, 100, 50 , 10, 1]
+    let changeMoney = {};
+
+    change = yen - vendingMachine[label].price;
+    for (const money of jpnMoney) {
+        changeMoney[String(money)] = Math.floor(change / money)
+        change = change % money;
+    }
+    return changeMoney;
+}
+console.log("\n---Your Change---");
+console.log(giveChange(500, "tea"));
